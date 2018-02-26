@@ -30,12 +30,12 @@ typedef struct	s_room
 	int		y;
 }				t_room;
 
-typedef struct	s_dict
+typedef struct	s_array_list
 {
 	int		capacity;
 	int		size;
-	char	*t_room;
-}				t_dict;
+	t_room	**rooms;
+}				t_array_list;
 
 typedef struct	s_ant
 {
