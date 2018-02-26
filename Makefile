@@ -16,7 +16,7 @@ SRC_DIR = src
 
 SRC = $(shell find $(SRC_DIR) -type f -name "*.c")
 
-INC = -I libft/ -I include/
+INC = -I libft/ -I ft_printf/ -I include/
 
 OBJ = $(SRC:.c=.o)
 
@@ -26,11 +26,13 @@ CFLAGS = -c $(FLAGS)
 
 LIBNAME = libft/libft.a
 
+FTPRINTF = ft_printf/libftprintf.a
+
 all: $(NAME)
 
 obj: $(OBJ)
 
-$(NAME) : $(LIBNAME) $(OBJ)
+$(NAME) : $(LIBNAME) $(FTPRINTF) $(OBJ)
 	gcc $(FLAGS) $^ -o $(NAME)
 
 %.o: %.c
@@ -54,3 +56,14 @@ libclean:
 
 libfclean:
 	@make -C libft/ fclean
+
+$(FTPRINTF): ftprintfmake
+
+ftprintfmake:
+	@make -C ft_printf/
+
+ftprintfclean:
+	@make -C ft_printf/
+
+ftprintffclean:
+	@make -C ft_printf/
