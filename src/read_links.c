@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_links.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akorunsk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/02 15:24:47 by akorunsk          #+#    #+#             */
+/*   Updated: 2018/03/02 15:24:50 by akorunsk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "lem_in.h"
 
@@ -14,7 +25,6 @@ void	read_links(t_array_list *rooms, t_matrix *m, t_error *err, char *buf)
 		err->line++;
 		if (!is_comment(buf))
 		{
-			ft_printf("here\n");
 			tokens = ft_strsplit(buf, '-');
 			if (count_tokens(tokens) != 2)
 				err->error_type = wrong_tokens_num;

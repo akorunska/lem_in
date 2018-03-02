@@ -45,7 +45,7 @@ void	al_stretch(t_array_list *d)
 	d->rooms = nd;
 }
 
-void	al_insert_room(t_array_list *d, char *name, int x, int y)
+void	al_insert(t_array_list *d, char *name, int x, int y)
 {
 	if (d->size + 1 >= d->capacity)
 		al_stretch(d);

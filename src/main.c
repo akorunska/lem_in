@@ -15,7 +15,7 @@
 void	otput_res(t_matrix *m, t_array_list *r)
 {
 	int		i;
-	int 	j;
+	int		j;
 
 	i = 0;
 	ft_printf("R O O M S\n\n");
@@ -27,12 +27,12 @@ void	otput_res(t_matrix *m, t_array_list *r)
 	ft_printf("\nM A T R I X\n");
 	ft_printf("start room: %s\n", al_get_room_name(r, m->start_room));
 	ft_printf("end room: %s\n", al_get_room_name(r, m->end_room));
-	
+
 	ft_printf(" \t");
 	j = 0;
 	while (j < m->rooms_q)
 	{
-		ft_printf("%i ", j%10);
+		ft_printf("%i ", j % 10);
 		j++;
 	}
 	ft_printf("\n\n\n");

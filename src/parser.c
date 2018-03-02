@@ -28,7 +28,7 @@ int		read_ants(t_error *err)
 		err->error_type = wrong_tokens_num;
 	else if (contains_nondigits(buf))
 		err->error_type = wrong_ants_num;
-	else 
+	else
 	{
 		res = ft_atoi(buf);
 		if (res <= 0)
@@ -55,18 +55,15 @@ int		parse_input(t_matrix *m, t_array_list *rooms)
 	al_initialise(rooms, 4);
 	matrix_initialise(m);
 	ant_q = read_ants(&err);
-	ft_printf("got ants num\n");
 	if (err.error_type != ok)
 		return (handle_error(&err));
 	buf = read_rooms(rooms, m, &err);
-	ft_printf("got rooms\n");
 	check_end_start(m, &err);
 	if (err.error_type != ok)
 		return (handle_error(&err));
 	matrix_alloc(m, rooms->size);
 	read_links(rooms, m, &err, buf);
-	ft_printf("got links\n");
 	if (err.error_type != ok)
 		return (handle_error(&err));
 	return (ant_q);
-}	
+}

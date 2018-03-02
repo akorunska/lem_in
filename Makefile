@@ -63,7 +63,7 @@ ftprintfmake:
 	@make -C ft_printf/
 
 ftprintfclean:
-	@make -C ft_printf/
+	@make -C ft_printf/ clean
 
 ftprintffclean:
-	@make -C ft_printf/
+	@make -C ft_printf/ fclean
