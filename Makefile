@@ -38,10 +38,10 @@ $(NAME) : $(LIBNAME) $(FTPRINTF) $(OBJ)
 %.o: %.c
 	gcc $(CFLAGS) $(INC) -o $@ $<
 
-clean: libclean
+clean: libclean ftprintfclean
 	rm -rf $(OBJ)
 
-fclean: libfclean clean
+fclean: libfclean clean ftprintffclean
 	rm -rf $(NAME)
 
 re: fclean all

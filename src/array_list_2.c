@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_input.c                                       :+:      :+:    :+:   */
+/*   array_list_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akorunsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/26 09:31:11 by akorunsk          #+#    #+#             */
-/*   Updated: 2018/02/26 09:31:15 by akorunsk         ###   ########.fr       */
+/*   Created: 2018/02/28 13:20:36 by akorunsk          #+#    #+#             */
+/*   Updated: 2018/02/28 13:20:39 by akorunsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-#include "libft.h"
 
-int		read_rooms(t_dict *rooms)
+int		al_index_of(t_array_list *d, char *to_find)
 {
+	int		i;
 
+	i = 0;
+	while (i < d->size)
+	{
+		if (!ft_strcmp(to_find, d->rooms[i]->name))
+			return (i);
+		i++;
+	}
+	return (-1);
 }
-
-int		read_links()
-{
-
-}
-
-int		read_input(t_matrix *m, t_dict *rooms)
-{
-	char	*buf;
-	int		ant_q;
-
-	get_next_line(0, &buf);
-	ant_q = ft_atoi(buf);
-
-	return (ant_q);
-}	
