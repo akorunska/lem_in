@@ -60,7 +60,7 @@ int		main(void)
 	ants = parse_input(&m, &rooms);
 	if (!ants)
 		return (1);
-	ft_printf("got %i\n", ants);
-	otput_res(&m, &rooms);
+	//ft_printf("got %i\n", ants);
+	//otput_res(&m, &rooms);
 	return (0);
 }
