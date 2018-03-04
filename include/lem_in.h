@@ -19,7 +19,7 @@
 typedef struct	s_matrix
 {
 	int		rooms_q;
-//	int		moment;
+	int		links_q;
 	int		start_room;
 	int		end_room;
 	char	**reachability_m;

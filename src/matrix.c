@@ -28,6 +28,7 @@ void	matrix_alloc(t_matrix *m, int rooms_q)
 
 void	matrix_initialise(t_matrix *m)
 {
+	m->links_q = 0;
 	m->start_room = -1;
 	m->end_room = -1;
 }
@@ -41,4 +42,5 @@ void	matrix_set_link(t_matrix *m, t_array_list *l, char *r1, char *r2)
 	ind2 = al_index_of(l, r2);
 	m->reachability_m[ind1][ind2] = 1;
 	m->reachability_m[ind2][ind1] = 1;
+	m->links_q++;
 }

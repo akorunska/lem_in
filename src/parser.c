@@ -40,6 +40,8 @@ int		read_ants(t_error *err)
 
 void	check_end_start(t_matrix *m, t_error *err)
 {
+	if (err->error_type != ok)
+		return ;
 	if (m->start_room == -1)
 		err->error_type = start_not_spec;
 	else if (m->end_room == -1)
@@ -63,7 +65,7 @@ int		parse_input(t_matrix *m, t_array_list *rooms)
 		return (handle_error(&err));
 	matrix_alloc(m, rooms->size);
 	read_links(rooms, m, &err, buf);
-	if (err.error_type != ok)
+	if (err.error_type != ok && !m->links_q)
 		return (handle_error(&err));
 	return (ant_q);
 }

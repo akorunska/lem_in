@@ -36,5 +36,6 @@ int		get_trimmed(char **temp)
 	rv = get_next_line(0, &buf);
 	*temp = ft_strtrim(buf);
 	ft_memdel((void**)&buf);
+	ft_printf("%s\n", *temp);
 	return (rv);
 }
