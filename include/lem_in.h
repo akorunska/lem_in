@@ -42,8 +42,18 @@ typedef struct	s_array_list
 typedef struct	s_ant
 {
 	int		num;
-	char	**path;
+	int		path;
+	int		step_num;
+	int		start_time;
 }				t_ant;
+
+typedef struct	s_path
+{
+	int		num;
+	int		*rooms;
+	int		len;
+	int		ants_q;
+}				t_path;
 
 typedef struct	s_error
 {
@@ -65,6 +75,15 @@ enum			e_err
 	end_duplicate,
 	unknown_error
 };
+
+t_path			**fill_path_arr(int	**paths);
+
+t_ant			**divide_ants(t_path **p, int ants_q);
+
+int				**get_shortest_paths(t_matrix *m);
+int				*get_path(t_matrix *m);
+
+t_ant			**ants_init(int q);
 
 int				parse_input(t_matrix *m, t_array_list *rooms);
 
