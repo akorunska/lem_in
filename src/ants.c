@@ -19,14 +19,16 @@ t_ant	**ants_init(int q)
 	int		i;
 
 	res = (t_ant **)ft_memalloc(sizeof(t_ant *) * (q + 1));
+	res[q] = NULL;
 	i = 0;
-	while (i < q + 1)
+	while (i < q)
 	{
 		res[i] = (t_ant *)ft_memalloc(sizeof(t_ant));
 		res[i]->num = i;
 		res[i]->path = -1;
-		res[i]->step_num = 0;
+		res[i]->step_num = -1;
 		res[i]->start_time = -1;
+		res[i]->finished = 0;
 		i++;
 	}
 	return (res);

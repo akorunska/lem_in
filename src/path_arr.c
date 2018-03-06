@@ -13,7 +13,7 @@
 #include "lem_in.h"
 #include <stdlib.h>
 
-t_path		**fill_path_arr(int	**paths)
+t_path		**fill_path_arr(int	**paths, int end)
 {
 	t_path	**res;
 	int		size;
@@ -33,6 +33,7 @@ t_path		**fill_path_arr(int	**paths)
 		while (paths[i][len] >= 0)
 			len++;
 		res[i]->len = len;
+		res[i]->rooms[len] = end;
 		res[i]->num = i;
 		res[i]->ants_q = 0;
 	}

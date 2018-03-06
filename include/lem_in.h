@@ -45,6 +45,7 @@ typedef struct	s_ant
 	int		path;
 	int		step_num;
 	int		start_time;
+	int		finished;
 }				t_ant;
 
 typedef struct	s_path
@@ -76,9 +77,9 @@ enum			e_err
 	unknown_error
 };
 
-t_path			**fill_path_arr(int	**paths);
+void			farm_manager(t_path **p, t_array_list *rooms, int ants_q);
 
-t_ant			**divide_ants(t_path **p, int ants_q);
+t_path			**fill_path_arr(int	**paths, int end);
 
 int				**get_shortest_paths(t_matrix *m);
 int				*get_path(t_matrix *m);

@@ -78,8 +78,7 @@ int		main(void)
 	ant_q = parse_input(&m, &rooms);
 	if (!ant_q)
 		return (1);
-	otput_res(&m, &rooms);
-	p = fill_path_arr(get_shortest_paths(&m));
-	divide_ants(p, ant_q);
+	p = fill_path_arr(get_shortest_paths(&m), m.end_room);
+	farm_manager(p, &rooms, ant_q);
 	return (0);
 }
