@@ -36,15 +36,11 @@ int		check_for_errors(char **tokens, t_error *err, t_array_list *rooms)
 	}
 	if (count_tokens(tokens) != 3)
 	{
-		if (count_tokens(tokens) == 1)
+		if (count_tokens(tokens) == 1 || count_tokens(tokens) == 0)
 		{
 			free_tokens(tokens);
-			return (0);
-		}
-		else if(count_tokens(tokens) == 0)
-		{
-			free_tokens(tokens);
-			err->error_type = wrong_tokens_num;
+			if (count_tokens(tokens) == 0)
+				err->error_type = wrong_tokens_num;
 			return (0);
 		}
 		else

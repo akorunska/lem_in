@@ -22,29 +22,22 @@ int		smallest_dist(t_matrix *m, int start)
 
 	if (start == m->end_room)
 		return (0);
-	wave = 1;
+	wave = 0;
 	visited = (char *)ft_memalloc(sizeof(char) * m->rooms_q);
 	visited[start] = 1;
-	while (wave < m->rooms_q)
+	while (++wave < m->rooms_q)
 	{
-		i = 0;
-		while (i < m->rooms_q)
-		{
+		i = -1;
+		while (++i < m->rooms_q)
 			if (visited[i] == wave)
 			{
-				j = 0;
-				while (j < m->rooms_q)
-				{
-					if (m->reachability_m[i][j])
-						visited[j] = wave + 1;
+				j = -1;
+				while (++j < m->rooms_q)
 					if (m->reachability_m[i][j] && j == m->end_room)
 						return (wave);
-					j++;
-				}
+					else if (m->reachability_m[i][j])
+						visited[j] = wave + 1;
 			}
-			i++;
-		}
-		wave++;
 	}
 	return (-1);
 }
@@ -66,7 +59,7 @@ void	build_path(t_matrix *m, int cur, int dist, int *solution)
 				cur = j;
 				if (j != m->end_room)
 					solution[i] = j;
-				break;
+				break ;
 			}
 			j++;
 		}
@@ -80,7 +73,7 @@ int		*get_path(t_matrix *m)
 	int		dist;
 	int		i;
 
-	solution = (int *)malloc(sizeof(int) * (m->rooms_q + 1));	
+	solution = (int *)malloc(sizeof(int) * (m->rooms_q + 1));
 	i = 0;
 	while (i < m->rooms_q + 1)
 	{
@@ -95,7 +88,7 @@ int		*get_path(t_matrix *m)
 	return (solution);
 }
 
-void	mark_rooms(t_matrix *m, int	*path)
+void	mark_rooms(t_matrix *m, int *path)
 {
 	int		i;
 	int		j;
@@ -132,11 +125,6 @@ int		**get_shortest_paths(t_matrix *m)
 		cur = get_path(m);
 		if (!cur)
 			return (res);
-		// for(int j = 0; cur[j] >= 0; j++)
-		// {
-		// 	ft_printf("%i - ", cur[j]);
-		// }
-		// ft_printf("\n");
 		res[i] = cur;
 		mark_rooms(m, cur);
 		i++;

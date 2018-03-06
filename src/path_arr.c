@@ -13,7 +13,7 @@
 #include "lem_in.h"
 #include <stdlib.h>
 
-t_path		**fill_path_arr(int	**paths, int end)
+t_path		**fill_path_arr(int **paths, int end)
 {
 	t_path	**res;
 	int		size;

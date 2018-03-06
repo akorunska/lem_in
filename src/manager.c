@@ -29,9 +29,9 @@ void	ants_per_path(t_path **p, int ants_q)
 			i++;
 			cur_q++;
 		}
-		while (p[active + 1] && \
+		while (p[active + 1] &&
 			p[active]->len + p[active]->ants_q > p[active + 1]->len)
-				active++;
+			active++;
 	}
 }
 
@@ -48,9 +48,8 @@ t_ant	**divide_ants(t_path **p, int ants_q)
 	ants_per_path(p, ants_q);
 	while (ants_q)
 	{
-		cur_p = 0;
-		while (p[cur_p])
-		{
+		cur_p = -1;
+		while (p[++cur_p])
 			if (p[cur_p]->ants_q > 0)
 			{
 				p[cur_p]->ants_q--;
@@ -59,8 +58,6 @@ t_ant	**divide_ants(t_path **p, int ants_q)
 				cur_ant++;
 				ants_q--;
 			}
-			cur_p++;
-		}
 		time++;
 	}
 	return (res);
@@ -72,6 +69,19 @@ void	print_move(int ant_num, t_array_list *rooms, int room_num)
 
 	r_name = al_get_room_name(rooms, room_num);
 	ft_printf("L%i-%s ", ant_num + 1, r_name);
+}
+
+void	move_ant(t_path **p, t_ant *cur_ant, t_array_list *rooms, int *f)
+{
+	cur_ant->step_num++;
+	if (p[cur_ant->path]->rooms[cur_ant->step_num] != -1)
+	{
+		print_move(cur_ant->num, rooms,
+			p[cur_ant->path]->rooms[cur_ant->step_num]);
+		*f = 0;
+	}
+	else
+		cur_ant->finished = 1;
 }
 
 void	farm_manager(t_path **p, t_array_list *rooms, int ants_q)
@@ -89,22 +99,11 @@ void	farm_manager(t_path **p, t_array_list *rooms, int ants_q)
 		if (time)
 			ft_printf("\n");
 		everyone_finished = 1;
-		cur_ant = 0;
-		while (ants[cur_ant])
+		cur_ant = -1;
+		while (ants[++cur_ant])
 		{
 			if (!ants[cur_ant]->finished && time >= ants[cur_ant]->start_time)
-			{
-				ants[cur_ant]->step_num++;
-				if (p[ants[cur_ant]->path]->rooms[ants[cur_ant]->step_num] != -1)
-				{
-					print_move(ants[cur_ant]->num, rooms, \
-						p[ants[cur_ant]->path]->rooms[ants[cur_ant]->step_num]);
-					everyone_finished = 0;
-				}
-				else
-					ants[cur_ant]->finished = 1;
-			}
-			cur_ant++;
+				move_ant(p, ants[cur_ant], rooms, &everyone_finished);
 		}
 		time++;
 	}
