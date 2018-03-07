@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "lem_in.h"
+#include <stdlib.h>
 
 int		is_command(char *buf)
 {
@@ -35,7 +36,7 @@ int		get_trimmed(char **temp)
 
 	rv = get_next_line(0, &buf);
 	*temp = ft_strtrim(buf);
-	ft_memdel((void**)&buf);
+	free(buf);
 	ft_printf("%s\n", *temp);
 	return (rv);
 }

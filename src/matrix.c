@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "lem_in.h"
+#include <stdlib.h>
 
 void	matrix_alloc(t_matrix *m, int rooms_q)
 {
@@ -43,4 +44,17 @@ void	matrix_set_link(t_matrix *m, t_array_list *l, char *r1, char *r2)
 	m->reachability_m[ind1][ind2] = 1;
 	m->reachability_m[ind2][ind1] = 1;
 	m->links_q++;
+}
+
+void	matrix_free(t_matrix *m)
+{
+	int		i;
+
+	i = 0;
+	while (m->reachability_m[i])
+	{
+		free(m->reachability_m[i]);
+		i++;
+	}
+	free(m->reachability_m);
 }

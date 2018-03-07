@@ -80,11 +80,13 @@ enum			e_err
 void			farm_manager(t_path **p, t_array_list *rooms, int ants_q);
 
 t_path			**fill_path_arr(int	**paths, int end);
+void			free_path(t_path **p);
 
 int				**get_shortest_paths(t_matrix *m);
 int				*get_path(t_matrix *m);
 
 t_ant			**ants_init(int q);
+void			ants_free(t_ant **a);
 
 int				parse_input(t_matrix *m, t_array_list *rooms);
 
@@ -100,6 +102,7 @@ void			matrix_initialise(t_matrix *m);
 void			matrix_alloc(t_matrix *m, int rooms_q);
 void			matrix_set_link(t_matrix *m, t_array_list *l, \
 				char *r1, char *r2);
+void			matrix_free(t_matrix *m);
 
 void			al_initialise(t_array_list *d, int initial_capacity);
 void			al_insert(t_array_list *d, char *name, int x, int y);

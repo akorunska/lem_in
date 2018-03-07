@@ -34,11 +34,15 @@ int		smallest_dist(t_matrix *m, int start)
 				j = -1;
 				while (++j < m->rooms_q)
 					if (m->reachability_m[i][j] && j == m->end_room)
+					{
+						free(visited);
 						return (wave);
+					}
 					else if (m->reachability_m[i][j])
 						visited[j] = wave + 1;
 			}
 	}
+	free(visited);
 	return (-1);
 }
 
@@ -84,7 +88,10 @@ int		*get_path(t_matrix *m)
 	if (dist >= 0)
 		build_path(m, m->start_room, dist, solution);
 	else
+	{
+		free(solution);
 		return (NULL);
+	}
 	return (solution);
 }
 
@@ -126,7 +133,7 @@ int		**get_shortest_paths(t_matrix *m)
 		if (!cur)
 			return (res);
 		res[i] = cur;
-		mark_rooms(m, cur);
+		mark_rooms(m, res[i]);
 		i++;
 	}
 	return (res);

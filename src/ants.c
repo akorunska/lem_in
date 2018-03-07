@@ -33,3 +33,16 @@ t_ant	**ants_init(int q)
 	}
 	return (res);
 }
+
+void	ants_free(t_ant **a)
+{
+	int		i;
+
+	i = 0;
+	while (a[i])
+	{
+		free(a[i]);
+		i++;
+	}
+	free(a);
+}

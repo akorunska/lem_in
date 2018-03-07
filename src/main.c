@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>//
 #include "lem_in.h"
 
 int		main(void)
@@ -24,5 +25,10 @@ int		main(void)
 		return (1);
 	p = fill_path_arr(get_shortest_paths(&m), m.end_room);
 	farm_manager(p, &rooms, ant_q);
+	matrix_free(&m);
+	al_clear(&rooms);
+	free_path(p);
+	
+	//system("leaks lem-in");
 	return (0);
 }

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "lem_in.h"
+#include <stdlib.h>
 
 void	first_link(t_array_list *rooms, t_matrix *m, t_error *err, char *buf)
 {
@@ -36,7 +37,7 @@ void	read_links(t_array_list *rooms, t_matrix *m, t_error *err, char *buf)
 		err->error_type = unknown_error;
 	else
 		first_link(rooms, m, err, buf);
-	while (err->error_type == ok && get_trimmed(&buf))
+	while (err->error_type == ok && get_next_line(0, &buf))
 	{
 		if (!is_comment(buf))
 		{
@@ -49,8 +50,9 @@ void	read_links(t_array_list *rooms, t_matrix *m, t_error *err, char *buf)
 			else
 				matrix_set_link(m, rooms, tokens[0], tokens[1]);
 			free_tokens(tokens);
-			ft_memdel((void**)&buf);
 		}
+		ft_memdel((void**)&buf);
 		err->line++;
 	}
+	free(buf);
 }

@@ -33,7 +33,7 @@ all: $(NAME)
 obj: $(OBJ)
 
 $(NAME) : $(LIBNAME) $(FTPRINTF) $(OBJ)
-	gcc $(FLAGS) $^ -o $(NAME)
+	gcc $(FLAGS) $^ -o $(NAME) -g
 
 %.o: %.c
 	gcc $(CFLAGS) $(INC) -o $@ $<

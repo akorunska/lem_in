@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "lem_in.h"
+#include <stdlib.h>
 
 void	get_command(char *buf, int *command, t_error *err, t_matrix *m)
 {

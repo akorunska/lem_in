@@ -107,4 +107,5 @@ void	farm_manager(t_path **p, t_array_list *rooms, int ants_q)
 		}
 		time++;
 	}
+	ants_free(ants);
 }

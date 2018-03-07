@@ -37,6 +37,20 @@ t_path		**fill_path_arr(int **paths, int end)
 		res[i]->num = i;
 		res[i]->ants_q = 0;
 	}
-	ft_memdel((void **)&paths);
+	free(paths);
 	return (res);
+}
+
+void	free_path(t_path **p)
+{
+	int		i;
+
+	i = 0;
+	while (p[i])
+	{
+		free(p[i]->rooms);
+		free(p[i]);
+		i++;
+	}
+	free(p);
 }

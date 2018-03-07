@@ -12,6 +12,7 @@
 
 #include "lem_in.h"
 #include "libft.h"
+#include <stdlib.h>
 
 int		read_ants(t_error *err)
 {
@@ -35,6 +36,7 @@ int		read_ants(t_error *err)
 			err->error_type = wrong_ants_num;
 	}
 	free_tokens(tokens);
+	ft_memdel((void**)&buf);
 	return (res);
 }
 
@@ -54,7 +56,7 @@ int		parse_input(t_matrix *m, t_array_list *rooms)
 	char	*buf;
 	int		ant_q;
 
-	al_initialise(rooms, 4);
+	al_initialise(rooms, 40);
 	matrix_initialise(m);
 	ant_q = read_ants(&err);
 	if (err.error_type != ok)
