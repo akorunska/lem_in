@@ -95,6 +95,8 @@ int			append(int read_q, char **line, char *buf, t_remains *prev)
 int			get_prev_line(char **line, t_remains **p, const int fd, char **buf)
 {
 	static	t_remains	*head;
+	char				*b;
+	int					rv;
 
 	*p = NULL;
 	*buf = NULL;
@@ -109,7 +111,12 @@ int			get_prev_line(char **line, t_remains **p, const int fd, char **buf)
 	if (!head)
 		head = *p;
 	if ((*p)->fd == fd && (*p)->str != NULL)
-		return (append((ft_strlen((*p)->str)), line, (*p)->str, *p));
+	{
+		b = ft_strdup((*p)->str);
+		rv = append((ft_strlen((*p)->str)), line, b, *p);
+		free(b);
+		return (rv);
+	}
 	else
 		return (1);
 }
@@ -134,5 +141,5 @@ int			get_next_line(const int fd, char **line)
 	if (read_q == -1)
 		return (-1);
 	free(buf);
-	return ((read_q == 0 && initial) ? delete(&prev) : 1);
+	return ((read_q == 0 && initial) ? 0 : 1);
 }
