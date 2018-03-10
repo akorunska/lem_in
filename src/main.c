@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h> //
 #include "lem_in.h"
 #include <fcntl.h>
 
@@ -32,7 +31,7 @@ int		main(void)
 		farm_manager(p, &rooms, ant_q);
 		free_path(p);
 	}
-	else 
+	else
 		path_doesnt_exits();
 	matrix_free(&m);
 	al_clear(&rooms);

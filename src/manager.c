@@ -23,7 +23,7 @@ void	ants_per_path(t_path **p, int ants_q)
 	while (cur_q < ants_q)
 	{
 		while (p[active + 1] &&
-			p[active]->len + p[active]->ants_q > p[active + 1]->len)
+			p[active]->len + p[active]->ants_q >= p[active + 1]->len)
 			active++;
 		i = 0;
 		while (i <= active && cur_q < ants_q)
