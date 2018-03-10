@@ -64,7 +64,11 @@ int		parse_input(t_matrix *m, t_array_list *rooms)
 	buf = read_rooms(rooms, m, &err);
 	check_end_start(m, &err);
 	if (err.error_type != ok)
+	{
+		if (buf)
+			free(buf);
 		return (handle_error(&err));
+	}
 	matrix_alloc(m, rooms->size);
 	read_links(rooms, m, &err, buf);
 	if (err.error_type != ok && !m->links_q)

@@ -115,5 +115,8 @@ int				count_tokens(char **t);
 void			free_tokens(char **t);
 
 int				handle_error(t_error *t);
+void			path_doesnt_exits(void);
+
+int				return_n_free(void *to_free, int to_return);
 
 #endif

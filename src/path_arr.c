@@ -41,7 +41,7 @@ t_path		**fill_path_arr(int **paths, int end)
 	return (res);
 }
 
-void	free_path(t_path **p)
+void		free_path(t_path **p)
 {
 	int		i;
 

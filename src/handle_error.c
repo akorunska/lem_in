@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "lem_in.h"
+#include <stdlib.h>
 
 int				handle_error(t_error *e)
 {
@@ -39,4 +40,15 @@ int				handle_error(t_error *e)
 	else
 		ft_printf("ERROR\nline %i", e->line);
 	return (0);
+}
+
+void			path_doesnt_exits(void)
+{
+	ft_printf("ERROR\nMoving ants from ##start to ##end is not possible\n");
+}
+
+int				return_n_free(void *to_free, int to_return)
+{
+	free(to_free);
+	return (to_return);
 }

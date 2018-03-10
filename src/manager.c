@@ -22,6 +22,9 @@ void	ants_per_path(t_path **p, int ants_q)
 	active = 0;
 	while (cur_q < ants_q)
 	{
+		while (p[active + 1] &&
+			p[active]->len + p[active]->ants_q > p[active + 1]->len)
+			active++;
 		i = 0;
 		while (i <= active && cur_q < ants_q)
 		{
@@ -29,9 +32,6 @@ void	ants_per_path(t_path **p, int ants_q)
 			i++;
 			cur_q++;
 		}
-		while (p[active + 1] &&
-			p[active]->len + p[active]->ants_q > p[active + 1]->len)
-			active++;
 	}
 }
 
@@ -58,7 +58,8 @@ t_ant	**divide_ants(t_path **p, int ants_q)
 				cur_ant++;
 				ants_q--;
 			}
-		time++;
+		if (p[0]->rooms[1] != -1)
+			time++;
 	}
 	return (res);
 }
@@ -94,6 +95,7 @@ void	farm_manager(t_path **p, t_array_list *rooms, int ants_q)
 	ants = divide_ants(p, ants_q);
 	time = 0;
 	everyone_finished = 0;
+	ft_printf("\n");
 	while (!everyone_finished)
 	{
 		if (time)

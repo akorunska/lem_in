@@ -11,41 +11,30 @@
 /* ************************************************************************** */
 
 #include <stdlib.h> //
-#include <stdio.h>  //
 #include "lem_in.h"
 #include <fcntl.h>
 
-// int		main(void)
-// {
-// 	int				ant_q;
-// 	t_matrix		m;
-// 	t_array_list	rooms;
-// 	t_path			**p;
-
-// 	ant_q = parse_input(&m, &rooms);
-// 	if (!ant_q)
-// 		return (1);
-// 	p = fill_path_arr(get_shortest_paths(&m), m.end_room);
-// 	farm_manager(p, &rooms, ant_q);
-// 	matrix_free(&m);
-// 	al_clear(&rooms);
-// 	free_path(p);
-	
-// 	//system("leaks lem-in");
-// 	return (0);
-// }
-
 int		main(void)
 {
-	char	*buf;
-	int		fd = open("1.txt", O_RDONLY);
+	int				ant_q;
+	t_matrix		m;
+	t_array_list	rooms;
+	int				**raw_paths;
+	t_path			**p;
 
-	while (get_next_line(fd, &buf) > 0)
+	ant_q = parse_input(&m, &rooms);
+	if (!ant_q)
+		return (1);
+	raw_paths = get_shortest_paths(&m);
+	if (raw_paths)
 	{
-		printf("%s\n", buf);
-		free(buf);
+		p = fill_path_arr(raw_paths, m.end_room);
+		farm_manager(p, &rooms, ant_q);
+		free_path(p);
 	}
-	free(buf);
-	system("leaks lem-in");
+	else 
+		path_doesnt_exits();
+	matrix_free(&m);
+	al_clear(&rooms);
 	return (0);
 }
